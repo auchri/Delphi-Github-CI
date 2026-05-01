@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{2E277B00-6A69-456C-B1EF-C007FAADDF6E}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="DelphiGithubCi.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="DelphiGithubCi_tests.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="DelphiGithubCi">
+        <MSBuild Projects="DelphiGithubCi.dproj"/>
+    </Target>
+    <Target Name="DelphiGithubCi:Clean">
+        <MSBuild Projects="DelphiGithubCi.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="DelphiGithubCi:Make">
+        <MSBuild Projects="DelphiGithubCi.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="DelphiGithubCi_tests">
+        <MSBuild Projects="DelphiGithubCi_tests.dproj"/>
+    </Target>
+    <Target Name="DelphiGithubCi_tests:Clean">
+        <MSBuild Projects="DelphiGithubCi_tests.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="DelphiGithubCi_tests:Make">
+        <MSBuild Projects="DelphiGithubCi_tests.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="DelphiGithubCi;DelphiGithubCi_tests"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="DelphiGithubCi:Clean;DelphiGithubCi_tests:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="DelphiGithubCi:Make;DelphiGithubCi_tests:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
